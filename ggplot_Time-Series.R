@@ -51,7 +51,7 @@ cutoff <- as.Date("2017/7/01")
 ## Segmented trend for # ED visits
 
 ggplot(TS, aes(time, OPIW)) +
-  labs(x = "Year") + labs(y = "ED visits") +
+  labs(x = "Year") + labs(y = "Opiod ED visits") +
   geom_line() +
   geom_smooth(aes(group = time >= cutoff), method = "lm")
 
@@ -60,10 +60,12 @@ ggplot(TS, aes(time, OPIW)) +
 ## Segmented trend for rate of ED visits
 
 ggplot(TS, aes(time, opiw_r)) +
-  labs(x = "Year") + labs(y = "Rate") +
+  labs(x = "Year") + labs(y = "Opioid ED visits (per 100,000 ED visits") +
   geom_line() +
-  scale_x_continuous(breaks = seq(min(TS$time), max(TS$time), 1)) +
   geom_smooth(aes(group = time >= cutoff), method = "lm")
+
+
+
 
 
 
