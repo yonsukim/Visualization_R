@@ -6,7 +6,7 @@ library(readxl)
 
 ########################  GI-ED (8/3/23) #################################
 
-GI <- read_excel("C:/Users/Dongwoo/Dropbox/Research/GI-ED/Data/data_20230803.xlsx")
+GI <- read_excel("C:/Users/.../Dropbox/Research/GI-ED/Data/data_20230803.xlsx")
 View(GI)
 
 # Below, both work
@@ -39,7 +39,7 @@ ggplot(GI, aes(time, nau_r)) +
 ################################ Opioid (8/3/23) #################################
 
 
-TS <- read_excel("C:/Users/Dongwoo/Dropbox/Research/Cannabis_Opioid/Data/TS.xlsx")
+TS <- read_excel("C:/Users/.../Dropbox/Research/Cannabis_Opioid/Data/TS.xlsx")
 View(TS)
 
 TS$time <- as.Date(TS$time, format = "%m/%d/%Y")
