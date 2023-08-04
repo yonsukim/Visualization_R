@@ -22,16 +22,16 @@ ggplot(GI, aes(time, nau_r)) +
   labs(x = "Year") + labs(y = "CHS ED visits (per 100,000 ED visits") +
 #  geom_line() + 
   geom_point() +
-  geom_smooth(aes(group = time >= cutoff), method = "lm")
+  geom_smooth(aes(group = time >= cutoff), method = "lm") +
+  geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) 
 
 
-
-## Segmented trend for rate of ED visits
-
-ggplot(TS, aes(time, opiw_r)) +
-  labs(x = "Year") + labs(y = "Rate") +
-  geom_line() +
-  geom_smooth(aes(group = time >= cutoff), method = "lm")
+ggplot(GI, aes(time, nau_r)) +
+  labs(x = "Year") + labs(y = "CHS ED visits (per 100,000 ED visits") +
+  geom_line() + 
+# geom_point() +
+  geom_smooth(aes(group = time >= cutoff), method = "lm") +
+  geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) 
 
 
 
@@ -47,22 +47,67 @@ TS$time <- as.Date(paste0(TS$time, "-01-01"))
 class(TS$time)
 cutoff <- as.Date("2017/7/01")
 
-
 ## Segmented trend for # ED visits
 
 ggplot(TS, aes(time, OPIW)) +
-  labs(x = "Year") + labs(y = "Opiod ED visits") +
-  geom_line() +
-  geom_smooth(aes(group = time >= cutoff), method = "lm")
+   labs(x = "Year") + labs(y = "Opiod ED visits") +
+   geom_line() +
+   geom_smooth(aes(group = time >= cutoff), method = "lm") +
+# Remove CI
+#  geom_smooth(se=F, aes(group = time >= cutoff), method = "lm") +
+   geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) +
+# Change background and grid color
+   theme(
+    panel.background = element_rect(fill = "white",
+                                    colour = "white",
+                                    size = 0.5, linetype = "solid"),
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                    colour = "white"), 
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                    colour = "white")
+  )
 
 
 
 ## Segmented trend for rate of ED visits
 
+# my_Plot <-
 ggplot(TS, aes(time, opiw_r)) +
+   labs(x = "Year") + labs(y = "Opioid ED visits (per 100,000 ED visits") +
+   geom_line() +
+   geom_smooth(aes(group = time >= cutoff), method = "lm") +
+   geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) +
+   theme(
+    panel.background = element_rect(fill = "white",
+                                    colour = "white",
+                                    size = 0.5, linetype = "solid"),
+    panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                    colour = "white"), 
+    panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                    colour = "white")
+   )
+
+
+# remove se=F to remove CI areas
+
+# my_plot + geom_smooth(color = "black")
+
+
+## Cannabis   
+ggplot(TS, aes(time, canw_r)) +
   labs(x = "Year") + labs(y = "Opioid ED visits (per 100,000 ED visits") +
   geom_line() +
-  geom_smooth(aes(group = time >= cutoff), method = "lm")
+  geom_smooth(aes(group = time >= cutoff), method = "lm") +
+  geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) 
+
+
+ggplot(TS, aes(time, CANW)) +
+  labs(x = "Year") + labs(y = "Opioid ED visits (per 100,000 ED visits") +
+  geom_line() +
+  geom_smooth(aes(group = time >= cutoff), method = "lm") +
+  geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) 
+
+   
 
 
 
