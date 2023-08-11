@@ -20,7 +20,7 @@ cutoff <- as.Date("2017/7/01")
 ## Segmented trend for # ED visits
 
 ggplot(GI, aes(time, nau_r)) +
-  labs(x = "Year") + labs(y = "CHS ED visits (per 100,000 ED visits") +
+  labs(x = "Year") + labs(y = "CHS ED visits (per 100,000 ED visits)" ) +
 #  geom_line() + 
   geom_point() +
   geom_smooth(aes(group = time >= cutoff), method = "lm") +
@@ -28,7 +28,7 @@ ggplot(GI, aes(time, nau_r)) +
 
 
 ggplot(GI, aes(time, nau_r)) +
-  labs(x = "Year") + labs(y = "CHS ED visits (per 100,000 ED visits") +
+  labs(x = "Year") + labs(y = "CHS ED visits (per 100,000 ED visits)" )+
   geom_line() + 
 # geom_point() +
   geom_smooth(aes(group = time >= cutoff), method = "lm") +
