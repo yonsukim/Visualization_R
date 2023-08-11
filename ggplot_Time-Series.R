@@ -10,6 +10,28 @@ library(readxl)
 GI <- read_excel("C:/Users/.../Dropbox/Research/GI-ED/Data/data_20230803.xlsx")
 View(GI)
 
+# Creating ED visits per 100,000
+GI$naut <- GI$nau_r*1000
+
+
+# Mean for Pre and Post
+condition1 <- GI$RCM ==0
+pre <- subset(GI, condition1)
+View(pre)
+
+condition2 <- GI$RCM ==1
+post <- subset(GI, condition2)
+View(post)
+
+average01 <- mean(GI$NAU)
+average02 <- mean(pre$NAU)
+average03 <- mean(post$NAU)
+
+average11 <- mean(GI$naut)
+average12 <- mean(pre$naut)
+average13 <- mean(post$naut)
+
+
 # Below, both work
 GI$time <- as.Date(GI$time, format = "%m/%d/%Y")
 GI$time <- as.Date(paste0(GI$time, "-01-01"))
@@ -19,7 +41,7 @@ cutoff <- as.Date("2017/7/01")
 
 ## Segmented trend for # ED visits
 
-ggplot(GI, aes(time, nau_r)) +
+ggplot(GI, aes(time, naut)) +
   labs(x = "Year") + labs(y = "CHS ED visits (per 100,000 ED visits)" ) +
 #  geom_line() + 
   geom_point() +
@@ -27,7 +49,7 @@ ggplot(GI, aes(time, nau_r)) +
   geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) 
 
 
-ggplot(GI, aes(time, nau_r)) +
+ggplot(GI, aes(time, naut)) +
   labs(x = "Year") + labs(y = "CHS ED visits (per 100,000 ED visits)" )+
   geom_line() + 
 # geom_point() +
