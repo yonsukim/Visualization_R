@@ -63,14 +63,15 @@ ggplot(GI, aes(time, naut)) +
 
 
 # TS <- read_excel("C:/Users/.../Dropbox/Research/Cannabis_Opioid/Data/TS.xlsx")
-TS <- read_excel("C:/Users/Dongwoo/Dropbox/Research/Cannabis_Opioid/Data/TS.xlsx", sheet="TS_20230816")
+TS <- read_excel("C:/Users/.../Dropbox/Research/Cannabis_Opioid/Data/TS.xlsx", sheet="TS_20230816")
 View(TS)
 
 TS$time <- as.Date(TS$time, format = "%m/%d/%Y")
 TS$time <- as.Date(paste0(TS$time, "-01-01"))
 class(TS$time)
 cutoff <- as.Date("2016/10/01")
-
+cutoff1 <- as.Date("2017/01/01")
+cutoff2 <- as.Date("2017/07/01")
 
 
 ## Segmented trend for # ED visits
@@ -78,19 +79,26 @@ cutoff <- as.Date("2016/10/01")
 ### ED visits per 100k
 
 ggplot(TS, aes(time, opi_t)) +
-   labs(x = "Year") + labs(y = "Opiod ED visits (per 100K)") +
+   labs(x = " ") + labs(y = "Opiod ED visits (per 100K)") +
+# Bold
+#    theme(axis.title.x = element_text(face = "bold")) +
+#    theme(axis.title.y = element_text(face = "bold")) +
   geom_line(aes(y=opi_t), color="darkblue", linetype='solid') +
   geom_point(aes(y=opi_t), color='darkblue', size=3) +  
-  geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) 
+  geom_vline(xintercept = cutoff, linetype="solid", color = "darkred", size=0.7) +
+  geom_vline(xintercept = cutoff1, linetype="longdash", color = "darkred", size=0.7) +
+  geom_vline(xintercept = cutoff2, linetype="dotted", color = "darkred", size=0.7) 
 
 
 ## Count
 
 ggplot(TS, aes(time, OPIW)) +
-  labs(x = "Year") + labs(y = "# Opioid ED Visits") +
+  labs(x = " ") + labs(y = "# Opioid ED Visits") +
   geom_line(aes(y=OPIW), color="darkblue", linetype='solid', lwd=0.5) +
   geom_point(color='darkblue', size=3) +  
-  geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7)
+  geom_vline(xintercept = cutoff, linetype="solid", color = "darkred", size=0.7) +
+  geom_vline(xintercept = cutoff1, linetype="longdash", color = "darkred", size=0.7) +
+  geom_vline(xintercept = cutoff2, linetype="dotted", color = "darkred", size=0.7) 
 
 
 
@@ -99,28 +107,30 @@ ggplot(TS, aes(time, OPIW)) +
 ## per 100k
 
 ggplot(TS, aes(time, opi_d)) +
-  labs(x = "Year") + 
-  #theme(axis.title.x = element_text(face = "bold")) +
+  labs(x = "") + 
   labs(y = "ED Visits per 100K (Differencing)") +
-  #theme(axis.title.y = element_text(face = "bold")) +
   geom_line(aes(y=opi_d), color="darkblue", linetype='solid', lwd=0.5) +
   geom_point(color='darkblue', size=3) +  
-  geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7)
+  geom_vline(xintercept = cutoff, linetype="solid", color = "darkred", size=0.7) +
+  geom_vline(xintercept = cutoff1, linetype="longdash", color = "darkred", size=0.7) +
+  geom_vline(xintercept = cutoff2, linetype="dotted", color = "darkred", size=0.7) 
 
 
 ## count
 
 ggplot(TS, aes(time, OPIW_d)) +
-  labs(x = "Year") + labs(y = "# opioid ED Visits (Differencing)") +
+  labs(x = "") + labs(y = "# opioid ED Visits (Differencing)") +
   geom_line(aes(y=OPIW_d), color="darkblue", linetype='solid', lwd=0.5) +
   geom_point(color='darkblue', size=3) +  
-  geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7)
+  geom_vline(xintercept = cutoff, linetype="solid", color = "darkred", size=0.7) +
+  geom_vline(xintercept = cutoff1, linetype="longdash", color = "darkred", size=0.7) +
+  geom_vline(xintercept = cutoff2, linetype="dotted", color = "darkred", size=0.7) 
 
 
 
 
 
-
+ 
 
 ## Trends of multiple symptoms
 
