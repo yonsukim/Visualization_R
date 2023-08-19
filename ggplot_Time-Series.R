@@ -56,10 +56,10 @@ ggplot(GI, aes(time, naut)) +
   geom_smooth(aes(group = time >= cutoff), method = "lm") +
   geom_vline(xintercept = cutoff, linetype="dashed", color = "darkred", size=0.7) 
 
+ 
 
 
-
-################################ Opioid (8/3/23) #################################
+################################ Opioid (08/03/23 THRU 08/19/23) #################################
 
 
 # TS <- read_excel("C:/Users/.../Dropbox/Research/Cannabis_Opioid/Data/TS.xlsx")
@@ -129,8 +129,9 @@ ggplot(TS, aes(time, OPIW_d)) +
 
 
 
+#################### END OF OPIOID TIME SERIES ANALYSIS (08/19/23) ####################
 
- 
+#################### Below: for reference only
 
 ## Trends of multiple symptoms
 
