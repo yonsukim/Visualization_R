@@ -67,7 +67,7 @@ ggplot(IP3) +
 ggplot(IP3) +  
     aes(x = Sev, y = Tcost, color = Race) +   geom_smooth(aes(linetype = Race), method = "lm",  se = FALSE) + xlab("Asthma Severity") + ylab("Direct Cost") +
   scale_x_continuous(breaks = c(1, 2, 3, 4), labels = c(" Intermittent", "", "", "Severe")) +
-  scale_y_continuous(breaks = c(40000, 50000, 60000, 70000), labels = c("$40,000", "$50,000", "$60,000", "$70,000")) +
+  scale_y_continuous(breaks = c(45000, 50000, 55000, 60000, 65000), labels = c("$45,000", "$50,000", "$55,000", "$60,000", "$65,000")) +
   scale_color_manual(values = c("red4", "blue4"))  +
   scale_linetype_manual(values = c("solid", "dotted")) +
   ggtitle("IP") +theme(plot.title = element_text(hjust=0.5)) +
@@ -117,7 +117,7 @@ ggplot(OP3) +
 ggplot(OP3) +  
   aes(x = Sev, y = Tcost, color = Race) +   geom_smooth(aes(linetype = Race), method = "lm", se = FALSE ) + xlab("Severity") + ylab("Cost") +
   scale_x_continuous(breaks = c(1, 2, 3, 4), labels = c("Intermittent", "", "", "Severe")) +
-  scale_y_continuous(breaks = c(5000, 7500, 10000, 125000, 15000), labels = c("$5,000", "$75,000", "$10,000", "$12,500", "$15,000")) +
+  scale_y_continuous(breaks = c(4000, 6000, 8000, 10000, 12000), labels = c("$4,000", "$6,000", "$8,000", "$10,000", "$12,000")) +
   scale_color_manual(values = c("blue4", "green4"))  +
   scale_linetype_manual(values = c("dotted", "longdash")) +
   ggtitle("OP") +theme(plot.title = element_text(hjust=0.5)) +
@@ -241,59 +241,6 @@ ggplot(OP3) +
 
 
 
-
-
-
-tips_f <- filter(tips, sex == "Female")
-tips_m <- filter(tips, sex == "Male")
-
-
-IP_w <- filter(IP4, Race == "4-White")
-IP_b <- filter(IP4, Race == "3-Black")
-
-
-ggplot(tips) +
-  aes(x = total_bill, y = tip, color = sex) +   geom_point(color = "grey") +
-  geom_smooth(method = "lm", data = tips_f) +   geom_smooth(method = "lm", data = tips_m)
-
-
-ggplot(IP4) +
-  aes(x = Sev, y = Tcost, color = Race) +
-  geom_smooth(method = "lm", data = IP4) +   geom_smooth(method = "lm", data = IP_b) 
-
-
-ggplot(IP4) +
-  aes(x = Sev, y = Tcost, color = Race) +   geom_point(color = "grey") +
-  geom_smooth(method = "lm", data = IP4) +   geom_smooth(method = "lm", data = IP_b) +
-  geom_point() +  ylim(1000, 50000) 
-
-
-
-
-
-
-ggplot(tips) +
-  aes(x = sex, y = tip) +
-  geom_boxplot() +
-  facet_wrap(~smoker)
-
-ggplot(IP4) +
-  aes(x = Race, y = Tcost) +
-  geom_boxplot() +
-  facet_wrap(~smoker)
-
-
-
-tips %>% 
-  group_by(sex, smoker) %>% 
-  summarise(tip_groups = mean(tip)) -> tips2
-
-
-tips2 %>% 
-  ggplot() +
-  aes(x = sex, y = tip_groups, color = smoker) +
-  geom_line(aes(group = smoker)) +
-  geom_point()
 
 
 
