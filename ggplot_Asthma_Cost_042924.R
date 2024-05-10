@@ -115,7 +115,7 @@ ggplot(OP3) +
 
 # BEST 
 ggplot(OP3) +  
-  aes(x = Sev, y = Tcost, color = Race) +   geom_smooth(aes(linetype = Race), method = "lm", se = FALSE ) + xlab("Severity") + ylab("Cost") +
+  aes(x = Sev, y = Tcost, color = Race) +   geom_smooth(aes(linetype = Race), method = "lm", se = FALSE ) + xlab("Severity") + ylab("Direct Cost") +
   scale_x_continuous(breaks = c(1, 2, 3, 4), labels = c("Intermittent", "", "", "Severe")) +
   scale_y_continuous(breaks = c(4000, 6000, 8000, 10000, 12000), labels = c("$4,000", "$6,000", "$8,000", "$10,000", "$12,000")) +
   scale_color_manual(values = c("blue4", "green4"))  +
