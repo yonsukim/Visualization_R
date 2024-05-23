@@ -1,4 +1,4 @@
-### Asthma Cost 04/29/24 ###  
+### Asthma Cost 05/23/24 ###  
 
     
 
@@ -47,7 +47,12 @@ IP2 <- IP[IP$Race == "3-Black" | IP$Race == "4-White" , ]
 IP3 <- IP2[IP2$Sev == 1 | IP2$Sev == "4" ,]
 #IP3 <- IP2[IP2$Sev != 0 ,]
 #IP4 <- IP3[IP3$Tcost <= 50000,]
-View(IP4)
+
+IP3["Race"][IP3["Race"] == "3-Black"] <- "African Americans"
+IP3["Race"][IP3["Race"] == "4-White"] <- "Whites"
+IP3["Race"][IP3["Race"] == "5-Hispanic"] <- "Hispanics"
+
+View(IP3)
 
 qplot(x = Sev, y = Tcost, facets = ~Race, data = IP3) +   geom_smooth(method = "lm")
 qplot(x = Sev, y = Tcost, data = IP3, color = Race) +  geom_smooth(method = "lm") 
@@ -65,23 +70,43 @@ ggplot(IP3) +
 ## Delete se=FALSE to include CI band
 
 ggplot(IP3) +  
-    aes(x = Sev, y = Tcost, color = Race) +   geom_smooth(aes(linetype = Race), method = "lm",  se = FALSE) + xlab("Asthma Severity") + ylab("Direct Cost") +
+  aes(x = Sev, y = Tcost, color = Race) +   geom_smooth(aes(linetype = Race), method = "lm",  se = FALSE) + xlab("Asthma Severity") + ylab("Direct Cost") +
   scale_x_continuous(breaks = c(1, 2, 3, 4), labels = c(" Intermittent", "", "", "Severe")) +
   scale_y_continuous(breaks = c(45000, 50000, 55000, 60000, 65000), labels = c("$45,000", "$50,000", "$55,000", "$60,000", "$65,000")) +
-  scale_color_manual(values = c("red4", "blue4"))  +
+  scale_color_manual(values = c("red4", "blue4")) +
   scale_linetype_manual(values = c("solid", "dotted")) +
   ggtitle("IP") +theme(plot.title = element_text(hjust=0.5)) +
   #Removing grid  
   theme(panel.grid.major = element_blank(),panel.grid.minor = element_blank()) 
 
 
+ggplot(IP3) +  
+  aes(x = Sev, y = Tcost, color = Race) +   geom_smooth(aes(linetype = Race), method = "lm",  se = FALSE) + 
+  xlab("Asthma Severity") + ylab("Direct Cost") +
+  scale_x_continuous(breaks = c(1, 2, 3, 4), labels = c(" Intermittent", "", "", "Severe")) +
+  scale_y_continuous(breaks = c(45000, 50000, 55000, 60000, 65000), labels = c("$45,000", "$50,000", "$55,000", "$60,000", "$65,000")) +
+  scale_color_manual(values = c("red4", "blue4")) +
+  scale_color_hue(labels=c("3-Black" = "African Americans", "4-White"="Whites"))
+  scale_linetype_manual(values = c("solid", "dotted")) +
+  ggtitle("IP") +theme(plot.title = element_text(hjust=0.5)) +
+  #Removing grid  
+  theme(panel.grid.major = element_blank(),panel.grid.minor = element_blank()) 
 
+
+  
+
+  
 #####################    ED     ##################################
 ED <- read_excel("C:\\Users\\kimy89\\Dropbox\\Research\\Asthma_Costs\\Results\\R_Cost.xlsx", sheet="ED") 
 
 ## Cost
 ED2 <- ED[ED$Race == "3-Black" | ED$Race == "4-White" , ]
 ED3 <- ED2[ED2$Sev == 1 | ED2$Sev == "4" ,]
+
+ED3["Race"][ED3["Race"] == "3-Black"] <- "African Americans"
+ED3["Race"][ED3["Race"] == "4-White"] <- "Whites"
+ED3["Race"][ED3["Race"] == "5-Hispanic"] <- "Hispanics"
+
 
 qplot(x = Sev, y = Tcost, facets = ~Race, data = ED3) +   geom_smooth(method = "lm")
 qplot(x = Sev, y = Tcost, data = ED3, color = Race) +  geom_smooth(method = "lm") 
@@ -106,6 +131,11 @@ OP <- read_excel("C:\\Users\\kimy89\\Dropbox\\Research\\Asthma_Costs\\Results\\R
 ## Cost
 OP2 <- OP[OP$Race == "5-Hispanic" | OP$Race == "4-White" , ]
 OP3 <- OP2[OP2$Sev == 1 | OP2$Sev == "4" ,]
+View(OP3)
+
+OP3["Race"][OP3["Race"] == "3-Black"] <- "African Americans"
+OP3["Race"][OP3["Race"] == "4-White"] <- "Whites"
+OP3["Race"][OP3["Race"] == "5-Hispanic"] <- "Hispanics"
 
 qplot(x = Sev, y = Tcost, facets = ~Race, data = OP3) +   geom_smooth(method = "lm")
 qplot(x = Sev, y = Tcost, data = OP3, color = Race) +  geom_smooth(method = "lm") 
@@ -164,6 +194,10 @@ ED <- read_excel("C:\\Users\\kimy89\\Dropbox\\Research\\Asthma_Costs\\Results\\R
 ## Cost
 ED2 <- ED[ED$Race == "3-Black" | ED$Race == "4-White" | ED$Race == "5-Hispanic" , ]
 ED3 <- ED2[ED2$Sev == 1 | ED2$Sev == "4" ,]
+
+ED3["Race"][ED3["Race"] == "3-Black"] <- "African Americans"
+ED3["Race"][ED3["Race"] == "4-White"] <- "Whites"
+ED3["Race"][ED3["Race"] == "5-Hispanic"] <- "Hispanics"
 
 qplot(x = Sev, y = Tcost, facets = ~Race, data = ED3) +   geom_smooth(method = "lm")
 qplot(x = Sev, y = Tcost, data = ED3, color = Race) +  geom_smooth(method = "lm") 
