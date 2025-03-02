@@ -108,8 +108,8 @@ ggplot(CA, aes(x = t)) +
   theme(panel.grid.major.x = element_blank(),  # Remove major grid lines
         panel.grid.minor.x = element_blank(),  # Remove minor grid lines
         axis.line = element_line(colour = "gray"))
-
-
+ 
+ 
 #### End - 3/2/2025 #####
 
 
