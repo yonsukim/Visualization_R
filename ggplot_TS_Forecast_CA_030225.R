@@ -26,14 +26,14 @@ data(mtcars)
 
 library(ggplot2) 
 library(dplyr) 
-tips <- read.csv("C:\\Users\\kimy89\\Dropbox\\Research\\Github\\Stats-in-R\\tips.csv")
+tips <- read.csv("C:\\Users\\ ID \\Dropbox\\Research\\Github\\Stats-in-R\\tips.csv")
 
 ##################### Trend Data ##########################################
 
-CA <- read_excel("C:\\Users\\kimy89\\Dropbox\\Research\\Asthma_Cannabis\\data\\Forecast_CA_030225.xlsx", sheet="TS") 
+CA <- read_excel("C:\\Users\\ ID \\Dropbox\\Research\\Asthma_Cannabis\\data\\Forecast_CA_030225.xlsx", sheet="TS") 
 View(CA)
 
-CA65 <- read_excel("C:\\Users\\kimy89\\Dropbox\\Research\\Asthma_Cannabis\\data\\Forecast_CA_030225.xlsx", sheet="TS_65") 
+CA65 <- read_excel("C:\\Users\\ ID \\Dropbox\\Research\\Asthma_Cannabis\\data\\Forecast_CA_030225.xlsx", sheet="TS_65") 
 View(CA65)
 
 # If the date is in "YYYY-MM" format, convert it to Date class (in Excel)
@@ -94,7 +94,7 @@ ggplot(CA65, aes(x = t)) +
   theme(panel.grid.major.x = element_blank(),  # Remove major grid lines
         panel.grid.minor.x = element_blank(),  # Remove minor grid lines
         axis.line = element_line(colour = "gray"))
-
+ 
 
 ########## Figure 1-4: Aged 65 + ##############
 
